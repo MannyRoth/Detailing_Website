@@ -137,7 +137,7 @@
                                 <div class="d-inline-flex align-items-center justify-content-center bg-white border border-light shadow rounded-circle mb-4" style="width: 100px; height: 100px; border-width: 15px !important;">
                                     <i class="fa fa-2x fa-envelope-open text-secondary"></i>
                                 </div>
-                                <h5 class="font-weight-medium m-0 mt-2">info@example.com</h5>
+                                <h5 class="font-weight-medium m-0 mt-2">info@example.com </h5>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -154,6 +154,7 @@
                     <div class="contact-form">
                         <div id="success"></div>
                         <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                            {% csrf_token %}
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="control-group">
@@ -177,12 +178,7 @@
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div>
-                            <form method = 'POST' >
-                                {% csrf_token %}
-                                    {{form.as_p}}
-                            
                                 <button class="btn btn-primary py-3 px-5" type="submit" id="sendMessageButton">Send Message</button>
-                                </form>
                             </div>
                         </form>
                     </div>
