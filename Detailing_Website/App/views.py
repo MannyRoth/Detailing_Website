@@ -19,28 +19,15 @@ def pricing(request):
 @csrf_exempt
 def contact(request):
     if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            subject = 'Website Msg'
-            body = {
-            'name' : form.cleaned_data['name'],
-            'email' : form.cleaned_data['email'],
-            'subject' : form.cleaned_data['subject'],
-            'message' : form.cleaned_data['message'] 
-            }
-            message = "/n".join(body.values())
-            email = 'email'
-            try:
-                send_mail(subject, message, email, ['mannyrothwell32@gmail.com'])
-            except BadHeaderError:
-                return HttpResponse('Invalid header found.')
-            
-            return redirect ('success.html')
+        name = request.POST ['name']
+        subject = request.POST ['subject']
+        email = request.POST ['email']
+        message = request.POST ['message']
+        try:
+            send_mail(subject, message, email, ['mannyrothwell32@gmail.com'])
+        except BadHeaderError:
+            return HttpResponse('Invalid header found.')
 
-        form = ContactForm()
-        return render(request, 'contact.html', {})
-
-        
     else:
         form = ContactForm()
         return render(request, 'contact.html', {})
