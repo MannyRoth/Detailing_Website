@@ -21,7 +21,6 @@ urlpatterns = [
       path('', views.index, name = 'index'),
       path('pricing.html', views.pricing, name = 'pricing'),
       path('contact.html', views.contact, name = 'contact'),
-      path('success.html', views.contact, name = 'success'),
+      path('success.html', views.success, name = 'success'),
       path('about.html', views.about, name = 'about'),
-      path('contact.php', views.contact, name = 'contact.php'),
 ]
