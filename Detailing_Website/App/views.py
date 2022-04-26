@@ -16,17 +16,27 @@ def index(request):
 def pricing(request):
     return render(request, 'pricing.html', {})
 
-@csrf_exempt
+
 def contact(request):
+
     if request.method == 'POST':
-        name = request.POST ['name']
-        subject = request.POST ['subject']
-        email = request.POST ['email']
-        message = request.POST ['message']
-        try:
-            send_mail(subject, message, email, ['mannyrothwell32@gmail.com'])
-        except BadHeaderError:
-            return HttpResponse('Invalid header found.')
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = "Website Inquiry" 
+            body = {
+                'name': form.cleaned_data['name'], 
+			    'subject': form.cleaned_data['subject'], 
+			    'email': form.cleaned_data['email'], 
+			    'message':form.cleaned_data['message'], 
+		        }
+		    
+            message = "\n".join(body.values())
+
+            try:
+                send_mail(subject, message, 'mannyrothwell32@gmail.com', ['mannyrothwell32@gmail.com'])
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+            return render(request, 'index.html', {})
 
     else:
         form = ContactForm()
