@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'App.apps.MyappConfig'
+    'App.apps.MyappConfig',
+    'Detailing_Website'
 ]
 
 MIDDLEWARE = [
@@ -135,5 +136,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'mannyrothwell32@gmail.com'
 EMAIL_HOST_PASSWORD = 'hrfynttojrkxoqip'
 EMAIL_USE_TLS = True
+EMAIL_USE_SSL= False
+
 
 

@@ -21,6 +21,7 @@ urlpatterns = [
       path('', views.index, name = 'index'),
       path('pricing.html', views.pricing, name = 'pricing'),
       path('contact.html', views.contact, name = 'contact'),
-      path('success.html', views.success, name = 'success'),
       path('about.html', views.about, name = 'about'),
+      path('index.html', views.index, name = 'index'),
+      path('sent.html', views.sent, name= 'sent')
 ]

@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
 from .forms import ContactForm
-from django.views.decorators.csrf import csrf_exempt
+
 
 
 def index(request):
@@ -20,30 +20,34 @@ def pricing(request):
 def contact(request):
 
     if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            subject = "Website Inquiry" 
-            body = {
-                'name': form.cleaned_data['name'], 
-			    'subject': form.cleaned_data['subject'], 
-			    'email': form.cleaned_data['email'], 
-			    'message':form.cleaned_data['message'], 
-		        }
-		    
-            message = "\n".join(body.values())
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject= request.POST.get('subject')
+        message = request.POST.get('message')
+    
+        data = { 
+                'name': name,
+                'email': email,
+                'subject': subject,
+                'message': message
+        }
+        message = ''' 
+        Subject: {}
+        Message: {}
+        From: {}
+        Email: {}
+        '''.format(data['subject'], data['message'], data['name'], data['email'])
 
-            try:
-                send_mail(subject, message, 'mannyrothwell32@gmail.com', ['mannyrothwell32@gmail.com'])
-            except BadHeaderError:
-                return HttpResponse('Invalid header found.')
-            return render(request, 'index.html', {})
+        send_mail(data['subject'], message, '', ['mannyrothwell32@gmail.com'])
+        
+            
+        return render(request, 'sent.html', {})
 
     else:
-        form = ContactForm()
         return render(request, 'contact.html', {})
 
 def about(request):
     return render(request, 'about.html', {})
 
-def success(request):
-    return render(request, 'success.html', {})
+def sent(request):
+    return render(request, 'sent.html', {})
