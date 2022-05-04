@@ -1,1 +1,1 @@
-web:gunicorn Detailing_Website.wsgi
+web:python3 manage.py migrate && gunicorn Detailing_Website.wsgi
