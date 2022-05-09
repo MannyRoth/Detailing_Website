@@ -1,1 +1,0 @@
-web: gunicorn detailing_website.wsgi
