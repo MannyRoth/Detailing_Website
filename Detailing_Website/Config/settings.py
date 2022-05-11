@@ -79,10 +79,16 @@ WSGI_APPLICATION = 'Detailing_Website.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2'
+        'NAME': ''
+        'USER': 'ngakpmumgikuxw'
+        'PASSWORD': '3db9226cfafa44958ca9c66f96a293a0b0d94f28f85af19881ddbc62755a090d'
+        'HOST':'ec2-3-211-6-217.compute-1.amazonaws.com'
+        'PORT':'5432'
+
     }
 }
+
 
 
 # Password validation
@@ -119,7 +125,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = '/static/Detailing_Website'
+STATIC_URL = 'Detailing_Website/App/Static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIR = [
         os.path.join(BASE_DIR, 'static'),
